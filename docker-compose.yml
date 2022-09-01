@@ -5,13 +5,13 @@ services:
     container_name: api
     build: .
     ports:
-      - 3000:3000
+      - 4444:8888
     environment:
       - DB_HOST=db
-      - DB_PASSWORD=1234
-      - DB=e5
-      - DB_USER=kenzinho
-      - SECRET_KEY=sua_chave_secreta
+      - DB_PASSWORD=postgres
+      - DB=db_entrega_S5_19
+      - DB_USER=postgres
+      - SECRET_KEY=segredo
     depends_on:
       db:
         condition: service_healthy
@@ -24,11 +24,11 @@ services:
     ports:
       - 5431:5432
     environment:
-      - POSTGRES_USER=kenzinho
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=e5
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db_entrega_S5_19
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U kenzinho -d e5"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d db_entrega_S5_19"]
       interval: 10s
       timeout: 5s
       retries: 5
